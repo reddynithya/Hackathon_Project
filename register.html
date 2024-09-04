@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>TravelTrace</title>
+	
+	<link rel="stylesheet" href="style.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body onload="getEvents()">
+	<header class="header">
+		<nav class="navbar">
+	      <a href="http://localhost:8080/main.html">Home</a>
+		  <a href="http://localhost:8080/about.html">About</a>
+	      <a href="http://localhost:8080/service.html">Services</a>
+	      <a href="http://localhost:8080/contact.html">Contact</a>
+		</nav>
+		<nav class="navbar">
+		  	<a href="http://localhost:8080/">Sign in</a>
+		</nav>
+	</header>
+	<div class="background"></div>
+	<div class="container">
+		<div class="content"> 
+			<h2 class="logo" url(logo.jsp)>TravelTrace</h2>
+			<div class="text-sci">
+				<h2>Welcome!<br><span>To TravelTrace</span></h2><br><br><br><br><br><br><br><br>
+				<div class="social-icons">
+					<a href="#"><i class='bx bxl-linkedin-square'></i></a>
+					<a href="#"><i class='bx bxl-facebook-circle'></i></a>
+					<a href="#"><i class='bx bxl-instagram-alt'></i></a>
+					<a href="#"><i class='bx bxl-twitter'></i></a>
+				</div>
+		   </div>
+		</div>
+
+			</div>
+			<div class="logreg-box">
+				<div class="form-box register">
+					<form action="#">
+						<h2>Sign Up</h2>
+						
+						<div class="input-box">
+							<span class="icon"><i class='bx bxs-user'></i></span>
+							<input type="text" id="T1" name="name" required>
+			                <label>Name:</label>
+						</div>
+						
+						
+						<div class="input-box">
+							<span class="icon"><i class='bx bxl-gmail'></i></span>
+							<input type="email" id="T2" name="email" required>
+			                <label>Email:</label>
+						</div>
+						
+						<div class="input-box">
+							<span class="icon"><i class='bx bxl-gmail'></i></span>
+							<input type="text" id="T3" name="mobile" required>
+			                <label>Mobile Number:</label>
+						</div>
+						
+						<div class="input-box">
+							<span class="icon"><i class='bx bxs-lock-open-alt' ></i></span>
+							<input type="password" id="T4"name="password" required>
+			                <label>Password</label>
+						</div>
+						<!-- <div class="requirements" id="password-requirements">
+				            <ul>
+				              <li class="length">Must be at least 6 characters long</li>
+				              <li class="capital">Must have at least one capital letter</li>
+				              <li class="symbol">Must have at least one special symbol</li>
+				            </ul>
+				        </div> -->
+						<div class="input-box">
+							<span class="icon"><i class='bx bxs-lock-open-alt' ></i></span>
+							<input type="password" id="T5" required>
+		                	<label>Confirm Password:</label>
+						</div>
+						<tr>
+							<td style="width:120px"></td>
+							<td> <button onclick="register()">Register</button> </td>
+						</tr>
+						<!--<button type="submit" class="btn"><a href="http://localhost:8080/main.html">Sign Up</a></button>-->
+						
+						<div class="login-register">
+							<p>Already have an account? <a href="http://localhost:8080/" class="login-link">Sign in</a></p>
+						</div>
+					</form>
+				</div>
+	</div>
+	<script>
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirm-password');
+    const passwordRequirements = document.getElementById('password-requirements');
+    const requirementItems = passwordRequirements.querySelectorAll('li');
+    // Function to check if password meets the requirements
+    function checkPasswordRequirements() {
+      const password = passwordField.value;
+      const passwordLength = password.length;
+      const hasCapitalLetter = /[A-Z]/.test(password);
+      const hasSpecialSymbol = /[!@#$%^&*]/.test(password);
+
+      passwordRequirements.style.display = 'block';
+
+      // Show or hide requirements based on validation
+      requirementItems.forEach((item) => {
+        const requirement = item.classList[0];
+        const isRequirementMet = evaluateRequirement(requirement);
+        item.style.display = isRequirementMet ? 'none' : 'block';
+      });
+
+      // Evaluate if a specific requirement is met
+      function evaluateRequirement(requirement) {
+        switch (requirement) {
+          case 'length':
+            return passwordLength >= 6;
+          case 'capital':
+            return hasCapitalLetter;
+          case 'symbol':
+            return hasSpecialSymbol;
+          default:
+            return true;
+        }
+      }
+
+      // Check if all requirements are met
+      const allRequirementsMet = Array.from(requirementItems).every((item) => {
+        const requirement = item.classList[0];
+        return evaluateRequirement(requirement);
+      });
+
+      // Toggle password field validation class
+      passwordField.classList.toggle('valid', allRequirementsMet);
+      passwordField.classList.toggle('invalid', !allRequirementsMet);
+    }
+
+    // Event listener to check password requirements on input
+    passwordField.addEventListener('beforeinput', checkPasswordRequirements);
+    confirmPasswordField.addEventListener('input', checkPasswordRequirements);
+  </script>
+</body>
+</html>
